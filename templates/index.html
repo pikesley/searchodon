@@ -8,13 +8,11 @@
 
 <body>
     <h1>Search your toots</h1>
-    <form method="GET" action="">
-        <input type="text" name="searchTerm" value="" placeholder="search term">
-        <input type="button" name="button" value="Search" onClick="search(this.form)">
+    <form>
+        <input type="text" name="searchTerm" id="searchTerm" value="" placeholder="search term">
     </form>
 
-    <section id="results">
-    </section>
+    <section id="results"></section>
 
     <footer>
         <a href="https://sam.pikesley.org/projects/searchodon/">searchodon on pikesley.org</a>
@@ -22,11 +20,22 @@
 </body>
 
 <script>
+    const searchTerm = document.getElementById("searchTerm")
+    searchTerm.addEventListener("keydown",
+        function (event) {
+            if (event.keyCode == 13) {
+                event.preventDefault();
+                search(searchTerm.value)
+            }
+        }, false);
+
+    ///
+
     function search(form) {
         var resultsDiv = document.getElementById("results")
         resultsDiv.replaceChildren();
 
-        var queryTerm = form.searchTerm.value
+        var queryTerm = form
         if (!queryTerm) {
             return
         }

@@ -25,12 +25,15 @@ h1 {
 
 form {
   display: grid;
-  grid-template-columns: 3fr 1fr;
   gap: 1rem;
   margin-inline: auto;
   width: 20%;
   font-size: 2rem;
   height: 2rem;
+}
+
+input {
+  padding: 0.5rem;
 }
 
 section {
