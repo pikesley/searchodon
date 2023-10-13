@@ -8,8 +8,8 @@
 
 <body>
     <h1>Search your toots</h1>
-    <form>
-        <input type="text" name="searchTerm" id="searchTerm" value="" placeholder="search term">
+    <form id="searchForm">
+        <input type="text" id="searchTerm" value="" placeholder="search term">
     </form>
 
     <section id="results"></section>
@@ -20,6 +20,8 @@
 </body>
 
 <script>
+    document.getElementById("searchTerm").focus();
+
     const searchTerm = document.getElementById("searchTerm")
     searchTerm.addEventListener("keydown",
         function (event) {
@@ -29,13 +31,10 @@
             }
         }, false);
 
-    ///
-
-    function search(form) {
+    function search(queryTerm) {
         var resultsDiv = document.getElementById("results")
         resultsDiv.replaceChildren();
 
-        var queryTerm = form
         if (!queryTerm) {
             return
         }
@@ -56,6 +55,9 @@
                 console.log(err)
                 alert("sorry, there are no results for your search")
             });
+
+        document.getElementById("searchForm").reset();
+
     }
 
     function renderToot(tootData) {
