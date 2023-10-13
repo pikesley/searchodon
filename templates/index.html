@@ -15,6 +15,10 @@
 
     <section id="results">
     </section>
+
+    <footer>
+        <a href="https://pikesley.org">pikesley.org</a>
+    </footer>
 </body>
 
 <script>
@@ -30,6 +34,11 @@
         fetch("/search?query=" + queryTerm, { headers: { "Content-Type": "application/json; charset=utf-8" } })
             .then(res => res.json())
             .then(response => {
+                totaliser = document.createElement("article")
+                var totalText = document.createTextNode(response.length + ' toots found containing "' + queryTerm + '"');
+                totaliser.append(totalText)
+                resultsDiv.append(totaliser)
+
                 response.forEach(function render(toot) {
                     resultsDiv.append(renderToot(toot))
                 })
@@ -42,6 +51,7 @@
 
     function renderToot(tootData) {
         var toot = document.createElement("article");
+        toot.setAttribute("class", "toot")
 
         var content = document.createElement("div")
         content.setAttribute("class", "toot-content")
