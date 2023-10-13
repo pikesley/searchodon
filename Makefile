@@ -42,5 +42,9 @@ clean:
 
 all: format lint clean
 
+refresh:
+	@echo "Nuking old toots"
+	rm -fr toots
+
 serve:
 	python webserver.py
