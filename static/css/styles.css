@@ -1,5 +1,57 @@
+@import url('https://fonts.googleapis.com/css?family=B612&display=swap');
+
+html {
+    --colour-background: lightgrey;
+    --colour-main: black;
+    --colour-link: red;
+    --colour-toot-background: white;
+}
+
 body {
-    background-color: lightgrey;
-    color: black;
-    font-family: sans-serif;
+    background-color: var(--colour-background);
+    color: var(--colour-main);
+    font-family: B612, sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 1rem;
+    margin-inline: auto;
+    width: 20%;
+    font-size: 2rem;
+    height: 2rem;
+}
+
+section {
+    display: grid;
+    gap: 1rem;
+    width: 80%;
+    margin-inline: auto;
+}
+
+article {
+    background-color: var(--colour-toot-background);
+    padding: 1rem;
+    display: grid;
+    grid-template-areas:
+        "link timestamp"
+        "content content";
+}
+
+div.toot-content {
+    font-size: 1.2rem;
+    grid-area: content;
+}
+
+time {
+    grid-area: timestamp;
+}
+
+a.toot-link {
+    grid-area: link;
 }

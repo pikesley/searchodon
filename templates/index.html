@@ -10,7 +10,7 @@
     <h1>Search your toots</h1>
     <form method="GET" action="">
         <input type="text" name="searchTerm" value="">
-        <input type="button" name="button" value="Click" onClick="search(this.form)">
+        <input type="button" name="button" value="Search" onClick="search(this.form)">
     </form>
 
     <section id="results">
@@ -44,9 +44,11 @@
         var toot = document.createElement("article");
 
         var content = document.createElement("div")
+        content.setAttribute("class", "toot-content")
         content.innerHTML = tootData.object.content;
 
         var link = document.createElement("a")
+        link.setAttribute("class", "toot-link")
         var linkText = document.createTextNode(tootData.object.url);
 
         link.setAttribute("href", tootData.object.url)
