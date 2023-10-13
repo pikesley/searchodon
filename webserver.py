@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from flask import Flask, request
+from flask import Flask, request, render_template
 
 from utils import gather_toots, search_toots, unpack_archive
 
@@ -8,6 +8,10 @@ app = Flask(__name__)
 if not Path("toots/outbox.json").exists():
     unpack_archive()
 app.toots = gather_toots()
+
+@app.route("/", methods=["GET"])
+def home():
+    return render_template('index.html')
 
 
 @app.route("/search", methods=["GET"])

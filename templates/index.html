@@ -1,0 +1,68 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/styles.css') }}" />
+</head>
+
+<body>
+    <h1>Search your toots</h1>
+    <form method="GET" action="">
+        <input type="text" name="searchTerm" value="">
+        <input type="button" name="button" value="Click" onClick="search(this.form)">
+    </form>
+
+    <section id="results">
+    </section>
+</body>
+
+<script>
+    function search(form) {
+        var resultsDiv = document.getElementById("results")
+        resultsDiv.replaceChildren();
+
+        var queryTerm = form.searchTerm.value
+        if (!queryTerm) {
+            return
+        }
+        console.log("Searching for " + queryTerm)
+        fetch("/search?query=" + queryTerm, { headers: { "Content-Type": "application/json; charset=utf-8" } })
+            .then(res => res.json())
+            .then(response => {
+                response.forEach(function render(toot) {
+                    resultsDiv.append(renderToot(toot))
+                })
+            })
+            .catch(err => {
+                console.log(err)
+                alert("sorry, there are no results for your search")
+            });
+    }
+
+    function renderToot(tootData) {
+        var toot = document.createElement("article");
+
+        var content = document.createElement("div")
+        content.innerHTML = tootData.object.content;
+
+        var link = document.createElement("a")
+        var linkText = document.createTextNode(tootData.object.url);
+
+        link.setAttribute("href", tootData.object.url)
+        link.appendChild(linkText);
+
+        var datestamp = document.createElement("time")
+        var tootDate = document.createTextNode(tootData.object.published)
+        datestamp.appendChild(tootDate)
+
+        toot.append(datestamp)
+        toot.append(content)
+        toot.append(link)
+
+        return toot;
+    }
+
+</script>
+
+</html>
