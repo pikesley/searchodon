@@ -1,0 +1,6 @@
+flask
+isort
+black
+ruff
+toml
+ipdb

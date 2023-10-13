@@ -7,4 +7,4 @@ RUN pip install --upgrade pip
 
 COPY ./ /opt/${PROJECT}
 WORKDIR /opt/${PROJECT}
-RUN python -m pip install .[test]
+RUN python -m pip install -r requirements.txt
