@@ -1,0 +1,4 @@
+toots/
+archive/
+.ruff_cache
+__pycache__

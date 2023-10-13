@@ -1,0 +1,75 @@
+[project]
+name = "searchodon"
+version = "0.0.0"
+description = "Search your toots"
+readme = "README.md"
+dependencies = ["flask"]
+
+[project.optional-dependencies]
+test = [
+  "isort",
+  "black",
+  "ruff",
+  "toml",
+  "ipdb"
+]
+
+[tool.ruff]
+ignore = [
+  "ANN101", # mypy can infer the type of self
+  "D100",   # modules don't need docstrings
+  "D104",   # disable requirement for package docstrings
+  "D203",   # a blank line is ugly
+  "D213",   # multi line summaries go on the first line
+  "S101",   # alerting on assert being used is mad when unit tests exist
+  "S104",   # alerting on binding to all interfaces
+]
+
+target-version = "py311"
+select = [
+  "A",    # flake8-builtins
+  "ANN",  # flake8-annotations
+  "ARG",  # flake8-unused-arguments
+  "BLE",  # flake8-blind-except
+  "B",    # flake8-bugbear
+  "C",
+  "C4",   # flake8-comprehensions
+  "C90",  # mccabe
+  "COM",  # flake8-commas
+  "D",    # pydocstyle
+  "DTZ",  # flake8-datetimez
+  "E",    # pycodestyle errors
+  "EM",   # flake8-errmsg
+  "EXE",  # flake8-executable
+  "F",
+  "FBT",  # flake8-boolean-trap
+  "FIX",  # flake8-fixme
+  "FLY",  # flynt
+  "G",    # flake8-logging-format
+  "I",    # isort
+  "ICN",  # flake8-import-conventions
+  "N",    # PEP8 naming
+  "PERF", # perflint
+  "PIE",  # flake8-pie
+  "PL",   # pylint
+  "PT",   # flake8-pytest-style
+  "PTH",  # flake8-use-pathlib
+  "Q",    # flake8-quotes
+  "RSE",  # flake8-raise
+  "RET",  # flake8-return
+  "RUF",  # Ruff rules
+  "S",    # flake8-bandit
+  "SLF",  # flake8-self
+  "SLOT", # flake8-slots
+  "SIM",  # flake8-simplify
+  "TID",  # flake8-tidy-imports
+  "TCH",  # flake8-type-checking
+  "T10",  # flake8-debugger
+  "TRY",  # tryceratops
+  "UP",   # pyupgrade
+  "W",    # pycodestyle warnings
+  "YTT",  # flake8-2020
+]
+
+[tool.ruff.mccabe]
+max-complexity = 10
