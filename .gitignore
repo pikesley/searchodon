@@ -1,4 +1,4 @@
 toots/
-archive/
+archive/archive*
 .ruff_cache
 __pycache__
