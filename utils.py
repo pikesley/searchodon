@@ -18,7 +18,7 @@ def gather_toots() -> list:
     outbox = json.loads(Path("toots/outbox.json").read_text())
     return [
         toot
-        for toot in outbox["orderedItems"]
+        for toot in reversed(outbox["orderedItems"])
         if type(toot["object"]).__name__ == "dict"
     ]
 
