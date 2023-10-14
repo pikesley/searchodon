@@ -76,7 +76,17 @@
         link.appendChild(linkText);
 
         var datestamp = document.createElement("time")
-        var tootDate = document.createTextNode(tootData.object.published)
+
+        var rawDate = new Date(tootData.object.published);
+        var prettyDate = rawDate.toLocaleString('en-GB', {
+            day: 'numeric',
+            year: 'numeric',
+            month: 'long',
+            hour: 'numeric',
+            minute: 'numeric',
+        });
+
+        var tootDate = document.createTextNode(prettyDate)
         datestamp.appendChild(tootDate)
 
         toot.append(datestamp)
