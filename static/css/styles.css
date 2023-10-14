@@ -45,12 +45,15 @@ section {
 }
 
 article.toot {
-  background-color: var(--colour-toot-background);
+  border: 1px solid var(--colour-toot-background);
   padding: 1rem;
   display: grid;
+  grid-template-columns: 1fr 1fr;
   grid-template-areas:
     "link timestamp"
     "content content";
+
+    box-shadow: 0.5rem 0.5rem 0.5rem var(--colour-toot-background);
 }
 
 div.toot-content {
