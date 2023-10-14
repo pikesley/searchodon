@@ -53,7 +53,7 @@ article.toot {
     "link timestamp"
     "content content";
 
-    box-shadow: 0.5rem 0.5rem 0.5rem var(--colour-toot-background);
+    box-shadow: 0.5rem 0.5rem 0.9rem var(--colour-toot-background);
 }
 
 div.toot-content {
@@ -68,7 +68,17 @@ time {
 
 a.toot-link {
   grid-area: link;
-  color: var(--colour-link);
+  color: var(--colour-toot-background);
+  background-color: var(--colour-main);
+  text-decoration: none;
+  width: fit-content;
+  border: 2px solid var(--colour-toot-background);
+  border-radius: 0.5rem;
+  padding: 0.3rem;
+}
+
+a.toot-link:hover {
+  background-color: var(--colour-background);
 }
 
 footer {
