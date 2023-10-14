@@ -1,11 +1,11 @@
 @import url("https://fonts.googleapis.com/css?family=B612&display=swap");
 
 html {
-    --pine-green: rgb(32, 91, 84);
-    --shamrock-green: rgba(73, 159, 104, 1);
-    --cambridge-blue: rgba(119, 178, 140, 1);
-    --ash-gray: rgba(194, 197, 187, 1);
-    --brown-sugar: rgba(180, 101, 74, 1);
+  --pine-green: rgb(32, 91, 84);
+  --shamrock-green: rgba(73, 159, 104, 1);
+  --cambridge-blue: rgba(119, 178, 140, 1);
+  --ash-gray: rgba(194, 197, 187, 1);
+  --brown-sugar: rgba(180, 101, 74, 1);
 
   --colour-background: var(--ash-gray);
   --colour-main: var(--pine-green);
@@ -48,37 +48,28 @@ article.toot {
   border: 1px solid var(--colour-toot-background);
   padding: 1rem;
   display: grid;
-  grid-template-columns: 1fr 1fr;
   grid-template-areas:
-    "link timestamp"
-    "content content";
-
-    box-shadow: 0.5rem 0.5rem 0.9rem var(--colour-toot-background);
+    "link"
+    "content";
+  box-shadow: 0.5rem 0.5rem 0.9rem var(--colour-toot-background);
 }
 
 div.toot-content {
-  font-size: 1.2rem;
   grid-area: content;
-}
-
-time {
-  grid-area: timestamp;
-  text-align: right;
+  font-size: 1.2rem;
 }
 
 a.toot-link {
   grid-area: link;
-  color: var(--colour-toot-background);
-  background-color: var(--colour-main);
+  color: var(--colour-link);
   text-decoration: none;
-  width: fit-content;
-  border: 2px solid var(--colour-toot-background);
   border-radius: 0.5rem;
   padding: 0.3rem;
+  text-align: right;
 }
 
 a.toot-link:hover {
-  background-color: var(--colour-background);
+  color: var(--colour-main);
 }
 
 footer {

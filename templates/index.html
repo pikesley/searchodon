@@ -70,12 +70,8 @@
 
         var link = document.createElement("a")
         link.setAttribute("class", "toot-link")
-        var linkText = document.createTextNode("Original Toot");
 
         link.setAttribute("href", tootData.object.url)
-        link.appendChild(linkText);
-
-        var datestamp = document.createElement("time")
 
         var rawDate = new Date(tootData.object.published);
         var prettyDate = rawDate.toLocaleString('en-GB', {
@@ -87,9 +83,8 @@
         });
 
         var tootDate = document.createTextNode(prettyDate)
-        datestamp.appendChild(tootDate)
+        link.appendChild(tootDate);
 
-        toot.append(datestamp)
         toot.append(content)
         toot.append(link)
 
