@@ -8,8 +8,8 @@ if not_indexed():
     refresh()
 
 app = Flask(__name__)
-ix = index.open_dir("toot_index")
-app.query_parser = QueryParser("content", schema=ix.schema)
+app.ix = index.open_dir("toot_index")
+app.query_parser = QueryParser("content", schema=app.ix.schema)
 
 
 @app.route("/", methods=["GET"])
@@ -24,7 +24,7 @@ def search() -> list:
     args = request.args
     query = app.query_parser.parse(args["query"])
 
-    with ix.searcher() as s:
+    with app.ix.searcher() as s:
         results = sorted(
             [dict(x) for x in s.search(query, limit=1000)],
             key=lambda x: x["datestamp"],
