@@ -4,6 +4,9 @@ ignore = [
   "D104",   # disable requirement for package docstrings
   "D203",   # a blank line is ugly
   "D213",   # multi line summaries go on the first line
+  "FBT001",
+  "FBT002",
+  "FBT003", # boolean function args
   "S101",   # alerting on assert being used is mad when unit tests exist
   "S104",   # alerting on binding to all interfaces
 ]

@@ -61,19 +61,20 @@
     }
 
     function renderToot(tootData) {
+        console.log(tootData[0])
         var toot = document.createElement("article");
         toot.setAttribute("class", "toot")
 
         var content = document.createElement("div")
         content.setAttribute("class", "toot-content")
-        content.innerHTML = tootData.object.content;
+        content.innerHTML = tootData.content;
 
         var link = document.createElement("a")
         link.setAttribute("class", "toot-link")
+        link.setAttribute("href", tootData.url)
+        link.setAttribute("target", "_blank")
 
-        link.setAttribute("href", tootData.object.url)
-
-        var rawDate = new Date(tootData.object.published);
+        var rawDate = new Date(tootData.datestamp);
         var prettyDate = rawDate.toLocaleString('en-GB', {
             day: 'numeric',
             year: 'numeric',

@@ -26,15 +26,15 @@ exec:
 		bash
 
 black:
-	python -m black .
+	@python -m black .
 
 isort:
-	python -m isort .
+	@python -m isort .
 
 format: black isort
 
 lint:
-	python -m ruff check .
+	@python -m ruff check .
 
 clean:
 	@find . -depth -name .ruff_cache -exec rm -fr {} \;
@@ -42,9 +42,8 @@ clean:
 
 all: format lint clean
 
-refresh:
-	@echo "Nuking old toots"
-	rm -fr toots
-
 serve:
-	python webserver.py
+	@python webserver.py
+
+refresh:
+	@python indexer.py
