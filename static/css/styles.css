@@ -1,22 +1,25 @@
 @import url("https://fonts.googleapis.com/css?family=B612&display=swap");
 
 html {
-  --pine-green: rgb(32, 91, 84);
-  --shamrock-green: rgba(73, 159, 104, 1);
-  --cambridge-blue: rgba(119, 178, 140, 1);
-  --ash-gray: rgba(194, 197, 187, 1);
-  --brown-sugar: rgba(180, 101, 74, 1);
+  --amaranth-purple: hsla(335, 84%, 35%, 1);
+  --selective-yellow: hsla(44, 98%, 50%, 1);
+  --lavender-blush: hsla(315, 11%, 86%, 1);
+  --steel-blue: hsla(207, 54%, 51%, 1);
+  --tawny: hsla(25, 97%, 41%, 1);
 
-  --colour-background: var(--ash-gray);
-  --colour-main: var(--pine-green);
-  --colour-link: var(--brown-sugar);
-  --colour-toot-background: var(--cambridge-blue);
+  --colour-background: var(--lavender-blush);
+  --colour-main: var(--tawny);
+  --colour-link: var(--steel-blue);
+  --colour-toot-background: var(--steel-blue);
 }
 
 body {
   background-color: var(--colour-background);
   color: var(--colour-main);
   font-family: B612, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 h1 {
@@ -34,24 +37,27 @@ form {
 
 input {
   padding: 0.5rem;
+  font-family: B612, sans-serif;
+}
+
+input:focus {
+  outline: none;
 }
 
 section {
   display: grid;
   gap: 1rem;
-  width: 80%;
+  width: 60%;
   margin-inline: auto;
-  min-height: 75%;
 }
 
 article.toot {
-  border: 1px solid var(--colour-toot-background);
   padding: 1rem;
   display: grid;
   grid-template-areas:
     "link"
     "content";
-  box-shadow: 0.5rem 0.5rem 0.9rem var(--colour-toot-background);
+  border: 1px solid var(--colour-toot-background);
 }
 
 div.toot-content {
@@ -59,24 +65,24 @@ div.toot-content {
   font-size: 1.2rem;
 }
 
-a.toot-link {
-  grid-area: link;
+a {
   color: var(--colour-link);
   text-decoration: none;
-  border-radius: 0.5rem;
-  padding: 0.3rem;
-  text-align: right;
 }
 
-a.toot-link:hover {
+a:hover {
   color: var(--colour-main);
 }
 
+a.toot-link {
+  grid-area: link;
+  text-align: right;
+}
+
 footer {
-  position: relative;
-  bottom: 0;
   width: 100%;
   text-align: center;
   height: 2rem;
   padding-top: 2rem;
+  margin-top: auto;
 }

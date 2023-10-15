@@ -32,6 +32,14 @@ make build
 make run
 ```
 
+### Index the Toots
+
+We need to build a [Whoosh](https://whoosh.readthedocs.io/en/latest/intro.html) index:
+
+```bash
+make refresh
+```
+
 ### Run the server
 
 ```bash
@@ -40,31 +48,19 @@ make serve
 
 And there should be something happening at http://localhost:8000/
 
-## Updating your archive
+## Indexing your Toots
 
-The first time it runs, it searches for the (semantically) latest file under `archive/` and unpacks it to `toots/`, and as long as `toots/` remains populated it will not unpack on subsequent runs. If you get a newer archive file, you can run
+At startup, it looks for a Whoosh index at `toot_index`, and if that doesn't exist, it:
+
+* unpacks the (semantically) latest file under `archive` into `toots`, then
+* runs the indexer
+
+If you get a newer archive, you can force building of a new index with
 
 ```bash
-make refresh serve
+make refresh
 ```
 
-to nuke `toots/` and force the new content to be extracted.
+## It looks terrible
 
-## How it searches
-
-The search method is hopelessly naive:
-
-```python
-return list(filter(lambda x: query.upper() in x["object"]["content"].upper(), toots))
-```
-
-It's basically looking for a (case-insensitive) match for the string `query` *anywhere* in the content of the toots. If you search for `a` or something you're gonna get a lot of results.
-
-## This is mostly terrible
-
-This idea formed itself as I was riding my bike round Victoria Park this lunchtime, and I've basically lashed this whole thing together this afternoon - a valid use of my day off, I'm sure you'll agree. Anyway, if you have ideas about
-
-* how to implement better searching (that doesn't involve ElasticSearch or something), or
-* how to make the design look less shit
-
-I'd *really* like to hear from you.
+This idea formed itself as I was riding my bike round Victoria Park this lunchtime, and I've basically lashed this whole thing together this afternoon - a valid use of my day off, I'm sure you'll agree. Anyway, if you have ideas about how to make the design look less shit, I'd *really* like to hear from you.

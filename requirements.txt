@@ -1,6 +1,7 @@
-flask
-isort
 black
+flask
+ipdb
+isort
 ruff
 toml
-ipdb
+whoosh

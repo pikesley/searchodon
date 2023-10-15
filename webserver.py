@@ -1,13 +1,15 @@
-from pathlib import Path
-
 from flask import Flask, render_template, request
+from whoosh import index
+from whoosh.qparser import QueryParser
 
-from utils import gather_toots, search_toots, unpack_archive
+from indexer import not_indexed, refresh
+
+if not_indexed():
+    refresh()
 
 app = Flask(__name__)
-if not Path("toots/outbox.json").exists():
-    unpack_archive()
-app.toots = gather_toots()
+ix = index.open_dir("toot_index")
+app.query_parser = QueryParser("content", schema=ix.schema)
 
 
 @app.route("/", methods=["GET"])
@@ -20,8 +22,19 @@ def home() -> str:
 def search() -> list:
     """Do the search."""
     args = request.args
+    query = app.query_parser.parse(args["query"])
 
-    return search_toots(app.toots, args["query"])
+    with ix.searcher() as s:
+        results = sorted(
+            [dict(x) for x in s.search(query, limit=1000)],
+            key=lambda x: x["datestamp"],
+            reverse=True,
+        )
+
+        for result in results:
+            result["datestamp"] = str(result["datestamp"])
+
+        return results
 
 
 if __name__ == "__main__":
