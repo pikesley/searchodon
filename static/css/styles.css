@@ -17,6 +17,9 @@ body {
   background-color: var(--colour-background);
   color: var(--colour-main);
   font-family: B612, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 h1 {
@@ -41,17 +44,15 @@ section {
   gap: 1rem;
   width: 80%;
   margin-inline: auto;
-  min-height: 75%;
 }
 
 article.toot {
-  border: 1px solid var(--colour-toot-background);
   padding: 1rem;
   display: grid;
   grid-template-areas:
     "link"
     "content";
-  box-shadow: 0.5rem 0.5rem 0.9rem var(--colour-toot-background);
+  box-shadow: 0.1rem 0.1rem 0.5rem var(--colour-toot-background);
 }
 
 div.toot-content {
@@ -73,10 +74,9 @@ a.toot-link:hover {
 }
 
 footer {
-  position: relative;
-  bottom: 0;
   width: 100%;
   text-align: center;
   height: 2rem;
   padding-top: 2rem;
+  margin-top: auto;
 }
