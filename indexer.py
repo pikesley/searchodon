@@ -1,4 +1,5 @@
 import json
+import zipfile
 import tarfile
 from datetime import datetime
 from pathlib import Path
@@ -26,9 +27,18 @@ def unpack_archive(force: bool = False) -> None:
     if unarchive:
         archive = sorted(Path("archive").glob("*"))[-1]
         print(f"unpacking {archive}")
-        with tarfile.open(str(archive)) as ball:
-            ball.extractall("toots")
 
+        if archive.suffix == ".zip":
+            zipfile.ZipFile(archive).extractall("toots")
+
+        if archive.suffix == ".gz":
+            with tarfile.open(str(archive)) as ball:
+                ball.extractall("toots")
+
+
+def fetch_outbox():
+    """Load the data."""
+    return json.loads(Path("toots/outbox.json").read_text())
 
 def index_toots(refresh: bool = False) -> None:
     """Index the Toots."""
@@ -46,7 +56,7 @@ def index_toots(refresh: bool = False) -> None:
         ix = index.open_dir("toot_index")
         writer = ix.writer()
 
-        outbox = json.loads(Path("toots/outbox.json").read_text())
+        outbox = fetch_outbox()
 
         for count, toot in enumerate(outbox["orderedItems"]):
             if count % 100 == 0:
